@@ -1,199 +1,104 @@
+// ===== RUPANDE JAVASCRIPT ===== 
+// Author: Kurrrrr Coder
+
 // ===== HAMBURGER MENU TOGGLE =====
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const navLinks = document.querySelectorAll('.nav-link');
 
-// Toggle menu when hamburger is clicked
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close menu when a link is clicked
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
     });
-});
 
-// Close menu when clicking outside navbar
-document.addEventListener('click', (e) => {
-    const isClickInsideNavbar = e.target.closest('.navbar');
-    if (!isClickInsideNavbar) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
+    // Close menu when link clicked
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
 
-// ===== SMOOTH SCROLL =====
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.navbar')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+}
+
+// ===== SMOOTH SCROLL HELPER =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         }
     });
 });
 
-// ===== SCROLL ANIMATION =====
+// ===== COUNTER ANIMATION FOR STATS =====
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.5,
+    rootMargin: '0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            animateCounter(entry.target);
             observer.unobserve(entry.target);
         }
     });
 }, observerOptions);
 
-// Observe all cards and sections
-document.querySelectorAll('.card, .profile-card, .news-card').forEach(element => {
-    element.style.opacity = '0';
-    element.style.transform = 'translateY(20px)';
-    element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(element);
-});
-
-// ===== NAVBAR STICKY EFFECT =====
-let lastScrollTop = 0;
-const navbar = document.querySelector('.navbar');
-
-window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+function animateCounter(element) {
+    const target = parseInt(element.textContent.replace(/,/g, '').match(/\d+/)[0]);
+    const duration = 2000;
+    const start = Date.now();
     
-    if (scrollTop > 100) {
-        navbar.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
-    } else {
-        navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.15)';
-    }
-    
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
-
-// ===== COUNTER ANIMATION =====
-const animateCounter = (element, target, duration = 2000) => {
-    let start = 0;
-    const increment = target / (duration / 16);
-    
-    const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-        } else {
-            element.textContent = Math.floor(start);
-        }
-    }, 16);
-};
-
-// Observe stat boxes for animation
-const statObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.hasAttribute('data-animated')) {
-            const statNumber = entry.target.querySelector('.stat-number');
-            const text = statNumber.textContent.trim();
+    function update() {
+        const progress = (Date.now() - start) / duration;
+        if (progress < 1) {
+            const current = Math.floor(target * progress);
+            let display = current.toString();
             
-            // Extract number from text
-            const number = parseInt(text.replace(/[^\d]/g, ''));
+            // Add comma separator for numbers
+            display = display.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             
-            if (!isNaN(number)) {
-                animateCounter(statNumber, number, 2000);
-                entry.target.setAttribute('data-animated', 'true');
+            // Preserve % or other suffixes
+            if (element.textContent.includes('%')) {
+                display += '%';
+            } else if (element.textContent.includes('/')) {
+                display = element.textContent.split('/')[0];
             }
             
-            statObserver.unobserve(entry.target);
+            element.textContent = display;
+            requestAnimationFrame(update);
+        } else {
+            element.textContent = element.textContent.split(' ')[0]; // Restore original
+            animateCounter(element); // This will be called after initial animation
         }
-    });
-}, { threshold: 0.5 });
+    }
+    
+    update();
+}
 
-document.querySelectorAll('.stat-box').forEach(box => {
-    statObserver.observe(box);
+// Observe all stat numbers
+document.querySelectorAll('.stat-number').forEach(statNum => {
+    observer.observe(statNum);
 });
 
-// ===== FORM VALIDATION (if needed) =====
-const validateForm = (form) => {
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-    
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            input.style.borderColor = '#e74c3c';
-            isValid = false;
-        } else {
-            input.style.borderColor = '#ccc';
-        }
-    });
-    
-    return isValid;
-};
-
-// ===== PAGE LOAD ANIMATION =====
-window.addEventListener('load', () => {
-    document.body.style.opacity = '1';
-});
-
-// ===== UTILITY: SCROLL TO TOP BUTTON =====
-const createScrollToTopButton = () => {
-    const button = document.createElement('button');
-    button.innerHTML = '↑';
-    button.className = 'scroll-to-top';
-    button.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 40px;
-        height: 40px;
-        background: #3e3e3e;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-        display: none;
-        z-index: 99;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    `;
-    
-    document.body.appendChild(button);
-    
-    window.addEventListener('scroll', () => {
-        if (window.pageYOffset > 300) {
-            button.style.display = 'flex';
-            button.style.alignItems = 'center';
-            button.style.justifyContent = 'center';
-        } else {
-            button.style.display = 'none';
-        }
-    });
-    
-    button.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    
-    button.addEventListener('mouseover', () => {
-        button.style.background = '#2d2d2d';
-        button.style.transform = 'scale(1.1)';
-    });
-    
-    button.addEventListener('mouseout', () => {
-        button.style.background = '#3e3e3e';
-        button.style.transform = 'scale(1)';
-    });
-};
-
-createScrollToTopButton();
-
-// ===== CONSOLE MESSAGE =====
-console.log('%c Welcome to Rupande!', 'color: #3e3e3e; font-size: 20px; font-weight: bold;');
-console.log('%c Platform Layanan Publik yang Transparan dan Profesional', 'color: #d6cfc2; font-size: 14px;');
+// ===== CONSOLE WELCOME MESSAGE =====
+console.log('%c🏛️ Selamat Datang di Rupande! 🏛️', 'color: #d4af37; font-size: 20px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);');
+console.log('%cPlatform Layanan Publik yang Transparan dan Profesional', 'color: #001a4d; font-size: 14px; font-weight: bold;');
+console.log('%cUntuk informasi lebih lanjut, kunjungi: https://rupande.vercel.app', 'color: #666; font-size: 12px;');
