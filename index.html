@@ -1,174 +1,484 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profil Instansi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Instansi</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f5f1e6; /* cream */
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* NAVBAR */
-.navbar {
-    background: #3e3e3e; /* abu tua */
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f1e6; /* cream */
+            color: #333;
+        }
 
-.navbar a {
-    color: #f5f1e6;
-    text-decoration: none;
-    margin-left: 20px;
-}
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: #3e3e3e; /* abu tua */
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
 
-/* HERO */
-.hero {
-    background: #d6cfc2; /* cream gelap */
-    color: #333;
-    padding: 100px 30px;
-    text-align: center;
-}
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
 
-.hero h1 {
-    margin: 0;
-    font-size: 40px;
-}
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
 
-/* SECTION */
-.section {
-    padding: 40px 30px;
-}
+        .nav-menu a {
+            color: #f5f1e6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 14px;
+        }
 
-.container {
-    max-width: 1100px;
-    margin: auto;
-}
+        .nav-menu a:hover {
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255,255,255,0.5);
+        }
 
-/* CARD */
-.cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
 
-.card {
-    background: #fffaf0; /* cream terang */
-    padding: 20px;
-    flex: 1;
-    min-width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #f5f1e6;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
 
-/* PROFILE */
-.profile {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    background: #fffaf0;
-    padding: 20px;
-    border-radius: 8px;
-}
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(10px, 10px);
+        }
 
-.profile img {
-    width: 120px;
-    border-radius: 10px;
-}
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
 
-/* FOOTER */
-.footer {
-    background: #3e3e3e;
-    color: #f5f1e6;
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-}
-</style>
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #d6cfc2 0%, #e8e1d5 100%);
+            color: #333;
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* ===== SECTION ===== */
+        .section {
+            padding: 50px 20px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #3e3e3e;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== CARD ===== */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: #fffaf0; /* cream terang */
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            color: #3e3e3e;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        /* ===== PROFILE ===== */
+        .profile {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            background: #fffaf0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .profile-img {
+            flex-shrink: 0;
+        }
+
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .profile-content {
+            flex: 1;
+        }
+
+        .profile-content p {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .profile-content strong {
+            color: #3e3e3e;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #3e3e3e;
+            color: #f5f1e6;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+
+        /* ===== RESPONSIVE - TABLET (768px) ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .navbar-brand {
+                font-size: 16px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #2d2d2d;
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-menu.active {
+                max-height: 300px;
+            }
+
+            .nav-menu a {
+                display: block;
+                padding: 15px 20px;
+                border-bottom: 1px solid #3e3e3e;
+                font-size: 16px;
+            }
+
+            .nav-menu a:hover {
+                background: #3e3e3e;
+            }
+
+            .hero {
+                padding: 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .section {
+                padding: 40px 20px;
+            }
+
+            .section h2 {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            .cards {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .profile {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px;
+                gap: 20px;
+            }
+
+            .profile img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        /* ===== RESPONSIVE - MOBILE (480px) ===== */
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 12px;
+            }
+
+            .navbar-brand {
+                font-size: 14px;
+            }
+
+            .hero {
+                padding: 50px 15px;
+                min-height: 250px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .hero p {
+                font-size: 13px;
+            }
+
+            .section {
+                padding: 30px 15px;
+            }
+
+            .section h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .card {
+                padding: 18px;
+            }
+
+            .card h3 {
+                font-size: 16px;
+            }
+
+            .card p {
+                font-size: 13px;
+            }
+
+            .profile {
+                padding: 20px 15px;
+            }
+
+            .profile img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .profile-content p {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .footer {
+                padding: 20px 15px;
+                font-size: 12px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div><strong>Instansi XYZ</strong></div>
-    <div>
-        <a href="#">Beranda</a>
-        <a href="#">Profil</a>
-        <a href="#">Layanan</a>
-        <a href="#">Berita</a>
-        <a href="#">Kontak</a>
-    </div>
-</div>
-
-<!-- HERO -->
-<div class="hero">
-    <h1>Selamat Datang di Website Resmi</h1>
-    <p>Melayani dengan Profesional dan Transparan</p>
-</div>
-
-<!-- PROFIL -->
-<div class="section">
-<div class="container">
-    <h2>Profil Instansi</h2>
-    <div class="profile">
-        <img src="https://via.placeholder.com/120">
-        <div>
-            <p><strong>Nama:</strong> Instansi XYZ</p>
-            <p><strong>Alamat:</strong> Indonesia</p>
-            <p><strong>Visi:</strong> Menjadi instansi terbaik</p>
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <div class="navbar-brand">🏛️ Instansi XYZ</div>
+        <ul class="nav-menu">
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#profil">Profil</a></li>
+            <li><a href="#layanan">Layanan</a></li>
+            <li><a href="#berita">Berita</a></li>
+            <li><a href="#kontak">Kontak</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </div>
-</div>
-</div>
 
-<!-- LAYANAN -->
-<div class="section">
-<div class="container">
-    <h2>Layanan</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Layanan 1</h3>
-            <p>Deskripsi layanan</p>
-        </div>
-        <div class="card">
-            <h3>Layanan 2</h3>
-            <p>Deskripsi layanan</p>
-        </div>
-        <div class="card">
-            <h3>Layanan 3</h3>
-            <p>Deskripsi layanan</p>
+    <!-- HERO -->
+    <div class="hero" id="beranda">
+        <h1>Selamat Datang di Website Resmi</h1>
+        <p>Melayani dengan Profesional dan Transparan</p>
+    </div>
+
+    <!-- PROFIL -->
+    <div class="section" id="profil">
+        <div class="container">
+            <h2>Profil Instansi</h2>
+            <div class="profile">
+                <div class="profile-img">
+                    <img src="https://via.placeholder.com/120" alt="Logo Instansi">
+                </div>
+                <div class="profile-content">
+                    <p><strong>Nama:</strong> Instansi XYZ</p>
+                    <p><strong>Alamat:</strong> Indonesia</p>
+                    <p><strong>Visi:</strong> Menjadi instansi terbaik dalam memberikan pelayanan</p>
+                    <p><strong>Misi:</strong> Memberikan solusi terbaik untuk masyarakat</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- BERITA -->
-<div class="section">
-<div class="container">
-    <h2>Berita Terbaru</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Judul Berita</h3>
-            <p>Ringkasan berita terbaru...</p>
-        </div>
-        <div class="card">
-            <h3>Judul Berita</h3>
-            <p>Ringkasan berita terbaru...</p>
+    <!-- LAYANAN -->
+    <div class="section" id="layanan">
+        <div class="container">
+            <h2>Layanan Kami</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>📋 Layanan 1</h3>
+                    <p>Deskripsi layanan pertama kami yang dirancang untuk memenuhi kebutuhan Anda dengan profesional dan bertanggung jawab.</p>
+                </div>
+                <div class="card">
+                    <h3>🎯 Layanan 2</h3>
+                    <p>Deskripsi layanan kedua kami yang menawarkan solusi terpadu untuk mempermudah proses administrasi Anda.</p>
+                </div>
+                <div class="card">
+                    <h3>✨ Layanan 3</h3>
+                    <p>Deskripsi layanan ketiga kami yang berfokus pada inovasi dan peningkatan kualitas layanan publik.</p>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-</div>
 
-<!-- FOOTER -->
-<div class="footer">
-    <p>© 2026 Instansi XYZ</p>
-</div>
+    <!-- BERITA -->
+    <div class="section" id="berita">
+        <div class="container">
+            <h2>Berita Terbaru</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Judul Berita 1</h3>
+                    <p>Ringkasan berita terbaru kami yang menginformasikan tentang perkembangan dan pencapaian terkini dari instansi kami.</p>
+                </div>
+                <div class="card">
+                    <h3>Judul Berita 2</h3>
+                    <p>Ringkasan berita terbaru kami yang memberikan update tentang program-program unggulan dan kegiatan sosial kami.</p>
+                </div>
+                <div class="card">
+                    <h3>Judul Berita 3</h3>
+                    <p>Ringkasan berita terbaru kami tentang kolaborasi dan kemitraan dengan berbagai pihak untuk kemajuan bersama.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer" id="kontak">
+        <p>&copy; 2026 Instansi XYZ. Semua hak dilindungi.</p>
+        <p style="margin-top: 10px; font-size: 12px; color: #999;">Hubungi: (021) 123-4567 | Email: info@instansi.go.id</p>
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when link clicked
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.navbar')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 </html>
