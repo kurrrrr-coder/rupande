@@ -1,34 +1,96 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard Profil Perusahaan</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f9;
-        }
-
-        .sidebar {
-            width: 220px;
-            height: 100vh;<!DOCTYPE html>
-<html lang="id">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profil Instansi</title>
+<title>Dashboard Rutan Pandeglang</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f7fa;
+    background: #f5f1e6; /* cream */
 }
 
-/* NAVBAR */
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background-color: #3e3e3e; /* abu tua */
+    color: white;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    background-color: #5a5a5a;
+}
+
+/* MAIN */
+.main {
+    margin-left: 220px;
+    padding: 20px;
+}
+
+/* HEADER */
+.header {
+    background: #fffaf0; /* cream terang */
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* CARD */
+.cards {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 250px;
+    background: #fffaf0;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* PROFILE */
+.profile {
+    background: #fffaf0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.profile img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.profile-info h3 {
+    margin: 0;
+}
+
+/* NAVBAR TOP */
 .navbar {
-    background: #0d47a1;
+    background: #3e3e3e;
     color: white;
     padding: 15px 30px;
     display: flex;
@@ -43,254 +105,105 @@ body {
 
 /* HERO */
 .hero {
-    background: url('https://via.placeholder.com/1200x400') center/cover;
-    color: white;
-    padding: 100px 30px;
+    background: #d6cfc2; /* cream gelap */
+    padding: 60px;
     text-align: center;
 }
 
 .hero h1 {
     margin: 0;
-    font-size: 40px;
+    color: #333;
 }
 
 /* SECTION */
 .section {
-    padding: 40px 30px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-}
-
-/* CARD */
-.cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    flex: 1;
-    min-width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
-/* PROFILE */
-.profile {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-.profile img {
-    width: 120px;
-    border-radius: 10px;
+    padding: 30px;
 }
 
 /* FOOTER */
 .footer {
-    background: #0d47a1;
+    background: #3e3e3e;
     color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: 40px;
+    padding: 15px;
+    margin-top: 30px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<div class="navbar">
-    <div><strong>Instansi XYZ</strong></div>
-    <div>
-        <a href="#">Beranda</a>
-        <a href="#">Profil</a>
-        <a href="#">Layanan</a>
-        <a href="#">Berita</a>
-        <a href="#">Kontak</a>
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h2>RUTAN</h2>
+    <a href="#">Dashboard</a>
+    <a href="#">Profil</a>
+    <a href="#">Karyawan</a>
+    <a href="#">Laporan</a>
+    <a href="#">Pengaturan</a>
+</div>
+
+<div class="main">
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>Dashboard Rutan Pandeglang</h1>
+        <p>Sistem Informasi Manajemen</p>
     </div>
-</div>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>Selamat Datang di Website Resmi Rutan Pandeglang</h1>
-    <p>Pasti Bermanfaat Untuk Masyarakat</p>
-</div>
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Karyawan</h3>
+            <p>120</p>
+        </div>
+        <div class="card">
+            <h3>Proyek Aktif</h3>
+            <p>15</p>
+        </div>
+        <div class="card">
+            <h3>Pendapatan</h3>
+            <p>Rp 250.000.000</p>
+        </div>
+    </div>
 
-<!-- PROFIL -->
-<div class="section">
-<div class="container">
-    <h2>Profil Instansi</h2>
+    <!-- PROFILE -->
     <div class="profile">
-        <img src="https://via.placeholder.com/120">
-        <div>
-            <p><strong>Nama:</strong> RUTAN PANDEGLANG</p>
-            <p><strong>Alamat:</strong> Jl. Masjid Agung, Pandeglang, Kec. Pandeglang, Kabupaten Pandeglang, Banten 42211, Indonesia</p>
-            <p><strong>Visi:</strong> Kerja Nyata Pelayanan Prima</p>
+        <img src="https://via.placeholder.com/100">
+        <div class="profile-info">
+            <h3>RUTAN PANDEGLANG</h3>
+            <p>Alamat: Pandeglang, Banten</p>
+            <p>Email: -</p>
         </div>
     </div>
-</div>
-</div>
 
-<!-- LAYANAN -->
-<div class="section">
-<div class="container">
-    <h2>Layanan</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Layanan 1</h3>
-            <p>Deskripsi layanan</p>
-        </div>
-        <div class="card">
-            <h3>Layanan 2</h3>
-            <p>Deskripsi layanan</p>
-        </div>
-        <div class="card">
-            <h3>Layanan 3</h3>
-            <p>Deskripsi layanan</p>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- BERITA -->
-<div class="section">
-<div class="container">
-    <h2>Berita Terbaru</h2>
-    <div class="cards">
-        <div class="card">
-            <h3>Judul Berita</h3>
-            <p>Ringkasan berita terbaru...</p>
-        </div>
-        <div class="card">
-            <h3>Judul Berita</h3>
-            <p>Ringkasan berita terbaru...</p>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-    <p>© 2026 Instansi XYZ</p>
-</div>
-
-</body>
-</html>
-            background-color: #2c3e50;
-            color: white;
-            position: fixed;
-            padding-top: 20px;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .sidebar a {
-            display: block;
-            color: white;
-            padding: 12px 20px;
-            text-decoration: none;
-        }
-
-        .sidebar a:hover {
-            background-color: #34495e;
-        }
-
-        .main {
-            margin-left: 220px;
-            padding: 20px;
-        }
-
-        .header {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        .cards {
-            display: flex;
-            gap: 20px;
-        }
-
-        .card {
-            flex: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .profile {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .profile img {
-            width: 100px;
-            border-radius: 50%;
-        }
-
-        .profile-info h3 {
-            margin: 0;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="sidebar">
-        <h2>Perusahaan</h2>
-        <a href="#">Dashboard</a>
-        <a href="#">Profil</a>
-        <a href="#">Karyawan</a>
-        <a href="#">Laporan</a>
-        <a href="#">Pengaturan</a>
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Selamat Datang di Website Resmi</h1>
+        <p>Pelayanan Profesional & Transparan</p>
     </div>
 
-    <div class="main">
-        <div class="header">
-            <h1>Dashboard Profil Perusahaan</h1>
-            <p>Selamat datang di sistem manajemen Rutan Pandeglang</p>
-        </div>
-
+    <!-- SECTION -->
+    <div class="section">
+        <h2>Berita Terbaru</h2>
         <div class="cards">
             <div class="card">
-                <h3>Total Karyawan</h3>
-                <p>120</p>
+                <h3>Berita 1</h3>
+                <p>Isi berita...</p>
             </div>
             <div class="card">
-                <h3>Proyek Aktif</h3>
-                <p>15</p>
-            </div>
-            <div class="card">
-                <h3>Pendapatan Bulan Ini</h3>
-                <p>Rp 250.000.000</p>
-            </div>
-        </div>
-
-        <div class="profile">
-            <img src="https://via.placeholder.com/100" alt="Logo Perusahaan">
-            <div class="profile-info">
-                <h3>RUTAN PANDEGLANG</h3>
-                <p>Alamat: Jl. Masjid Agung, Pandeglang, Kec. Pandeglang, Kabupaten Pandeglang, Banten 42211, Indonesia</p>
-                <p>Email: </p>
+                <h3>Berita 2</h3>
+                <p>Isi berita...</p>
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>© 2026 Rutan Pandeglang</p>
+    </div>
+
+</div>
 
 </body>
 </html>
