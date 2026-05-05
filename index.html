@@ -3,482 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Instansi</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f1e6; /* cream */
-            color: #333;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            background: #3e3e3e; /* abu tua */
-            color: white;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .navbar-brand {
-            font-weight: 700;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        .nav-menu a {
-            color: #f5f1e6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 14px;
-        }
-
-        .nav-menu a:hover {
-            color: #fff;
-            text-shadow: 0 0 5px rgba(255,255,255,0.5);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #f5f1e6;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(10px, 10px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            background: linear-gradient(135deg, #d6cfc2 0%, #e8e1d5 100%);
-            color: #333;
-            padding: 80px 20px;
-            text-align: center;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 36px;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: #555;
-        }
-
-        /* ===== SECTION ===== */
-        .section {
-            padding: 50px 20px;
-        }
-
-        .section h2 {
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #3e3e3e;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* ===== CARD ===== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: #fffaf0; /* cream terang */
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        .card h3 {
-            color: #3e3e3e;
-            margin-bottom: 12px;
-            font-size: 18px;
-        }
-
-        .card p {
-            color: #666;
-            line-height: 1.6;
-            font-size: 14px;
-        }
-
-        /* ===== PROFILE ===== */
-        .profile {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-            background: #fffaf0;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .profile-img {
-            flex-shrink: 0;
-        }
-
-        .profile img {
-            width: 120px;
-            height: 120px;
-            border-radius: 10px;
-            object-fit: cover;
-        }
-
-        .profile-content {
-            flex: 1;
-        }
-
-        .profile-content p {
-            margin-bottom: 10px;
-            line-height: 1.8;
-            font-size: 14px;
-        }
-
-        .profile-content strong {
-            color: #3e3e3e;
-        }
-
-        /* ===== FOOTER ===== */
-        .footer {
-            background: #3e3e3e;
-            color: #f5f1e6;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 40px;
-            font-size: 14px;
-        }
-
-        /* ===== RESPONSIVE - TABLET (768px) ===== */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 12px 15px;
-            }
-
-            .navbar-brand {
-                font-size: 16px;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: #2d2d2d;
-                flex-direction: column;
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-            }
-
-            .nav-menu.active {
-                max-height: 300px;
-            }
-
-            .nav-menu a {
-                display: block;
-                padding: 15px 20px;
-                border-bottom: 1px solid #3e3e3e;
-                font-size: 16px;
-            }
-
-            .nav-menu a:hover {
-                background: #3e3e3e;
-            }
-
-            .hero {
-                padding: 60px 20px;
-            }
-
-            .hero h1 {
-                font-size: 28px;
-            }
-
-            .hero p {
-                font-size: 14px;
-            }
-
-            .section {
-                padding: 40px 20px;
-            }
-
-            .section h2 {
-                font-size: 24px;
-                margin-bottom: 25px;
-            }
-
-            .cards {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-            }
-
-            .card {
-                padding: 20px;
-            }
-
-            .profile {
-                flex-direction: column;
-                text-align: center;
-                padding: 25px;
-                gap: 20px;
-            }
-
-            .profile img {
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        /* ===== RESPONSIVE - MOBILE (480px) ===== */
-        @media (max-width: 480px) {
-            .navbar {
-                padding: 10px 12px;
-            }
-
-            .navbar-brand {
-                font-size: 14px;
-            }
-
-            .hero {
-                padding: 50px 15px;
-                min-height: 250px;
-            }
-
-            .hero h1 {
-                font-size: 24px;
-                margin-bottom: 10px;
-            }
-
-            .hero p {
-                font-size: 13px;
-            }
-
-            .section {
-                padding: 30px 15px;
-            }
-
-            .section h2 {
-                font-size: 20px;
-                margin-bottom: 20px;
-            }
-
-            .cards {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .card {
-                padding: 18px;
-            }
-
-            .card h3 {
-                font-size: 16px;
-            }
-
-            .card p {
-                font-size: 13px;
-            }
-
-            .profile {
-                padding: 20px 15px;
-            }
-
-            .profile img {
-                width: 90px;
-                height: 90px;
-            }
-
-            .profile-content p {
-                font-size: 13px;
-                margin-bottom: 8px;
-            }
-
-            .footer {
-                padding: 20px 15px;
-                font-size: 12px;
-            }
-        }
-    </style>
+    <meta name="description" content="Rupande - Platform website resmi untuk instansi pemerintah dan organisasi">
+    <meta name="keywords" content="website, instansi, pemerintah, organisasi, layanan publik">
+    <meta name="author" content="Kurrrrr Coder">
+    <title>Rupande - Website Resmi Instansi</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <!-- NAVBAR -->
-    <div class="navbar">
-        <div class="navbar-brand">🏛️ Instansi XYZ</div>
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <span class="brand-icon">🏛️</span>
+            <span class="brand-text">Rupande</span>
+        </div>
         <ul class="nav-menu">
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#profil">Profil</a></li>
-            <li><a href="#layanan">Layanan</a></li>
-            <li><a href="#berita">Berita</a></li>
-            <li><a href="#kontak">Kontak</a></li>
+            <li><a href="#beranda" class="nav-link">Beranda</a></li>
+            <li><a href="#profil" class="nav-link">Profil</a></li>
+            <li><a href="#layanan" class="nav-link">Layanan</a></li>
+            <li><a href="#berita" class="nav-link">Berita</a></li>
+            <li><a href="#kontak" class="nav-link">Kontak</a></li>
         </ul>
-        <div class="hamburger">
+        <div class="hamburger" aria-label="Toggle menu">
             <span></span>
             <span></span>
             <span></span>
         </div>
-    </div>
+    </nav>
 
-    <!-- HERO -->
-    <div class="hero" id="beranda">
-        <h1>Selamat Datang di Website Resmi</h1>
-        <p>Melayani dengan Profesional dan Transparan</p>
-    </div>
+    <!-- HERO SECTION -->
+    <section class="hero" id="beranda">
+        <div class="hero-content">
+            <h1>Selamat Datang di Rupande</h1>
+            <p class="hero-subtitle">Platform Layanan Publik yang Transparan dan Profesional</p>
+            <div class="hero-buttons">
+                <a href="#layanan" class="btn btn-primary">Jelajahi Layanan</a>
+                <a href="#kontak" class="btn btn-secondary">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
 
-    <!-- PROFIL -->
-    <div class="section" id="profil">
+    <!-- PROFIL SECTION -->
+    <section class="section" id="profil">
         <div class="container">
-            <h2>Profil Instansi</h2>
-            <div class="profile">
+            <h2 class="section-title">Tentang Rupande</h2>
+            <div class="profile-card">
                 <div class="profile-img">
-                    <img src="https://via.placeholder.com/120" alt="Logo Instansi">
+                    <img src="https://via.placeholder.com/140x140/3e3e3e/ffffff?text=Logo" alt="Logo Rupande">
                 </div>
                 <div class="profile-content">
-                    <p><strong>Nama:</strong> Instansi XYZ</p>
-                    <p><strong>Alamat:</strong> Indonesia</p>
-                    <p><strong>Visi:</strong> Menjadi instansi terbaik dalam memberikan pelayanan</p>
-                    <p><strong>Misi:</strong> Memberikan solusi terbaik untuk masyarakat</p>
+                    <h3>Rupande - Layanan Untuk Semua</h3>
+                    <p>
+                        <strong>📍 Lokasi:</strong><br>
+                        Indonesia - Melayani seluruh nusantara dengan dedikasi penuh
+                    </p>
+                    <p>
+                        <strong>🎯 Visi:</strong><br>
+                        Menjadi platform layanan publik terdepan yang transparan, efisien, dan responsif terhadap kebutuhan masyarakat.
+                    </p>
+                    <p>
+                        <strong>💼 Misi:</strong><br>
+                        Memberikan layanan berkualitas tinggi dengan integritas, profesionalisme, dan komitmen pada kepuasan pelanggan.
+                    </p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- LAYANAN -->
-    <div class="section" id="layanan">
+    <!-- LAYANAN SECTION -->
+    <section class="section section-alt" id="layanan">
         <div class="container">
-            <h2>Layanan Kami</h2>
-            <div class="cards">
+            <h2 class="section-title">Layanan Kami</h2>
+            <p class="section-subtitle">Kami menyediakan berbagai layanan untuk memenuhi kebutuhan Anda</p>
+            <div class="cards-grid">
                 <div class="card">
-                    <h3>📋 Layanan 1</h3>
-                    <p>Deskripsi layanan pertama kami yang dirancang untuk memenuhi kebutuhan Anda dengan profesional dan bertanggung jawab.</p>
+                    <div class="card-icon">📋</div>
+                    <h3>Pengaduan & Aspirasi</h3>
+                    <p>Layanan untuk menyampaikan keluhan, saran, dan aspirasi Anda. Kami berkomitmen untuk mendengarkan dan memberikan respons yang cepat.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
                 </div>
                 <div class="card">
-                    <h3>🎯 Layanan 2</h3>
-                    <p>Deskripsi layanan kedua kami yang menawarkan solusi terpadu untuk mempermudah proses administrasi Anda.</p>
+                    <div class="card-icon">🎯</div>
+                    <h3>Administrasi & Perizinan</h3>
+                    <p>Solusi lengkap untuk kebutuhan administrasi dan proses perizinan yang mudah, cepat, dan transparan.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
                 </div>
                 <div class="card">
-                    <h3>✨ Layanan 3</h3>
-                    <p>Deskripsi layanan ketiga kami yang berfokus pada inovasi dan peningkatan kualitas layanan publik.</p>
+                    <div class="card-icon">✨</div>
+                    <h3>Konsultasi & Informasi</h3>
+                    <p>Dapatkan informasi lengkap dan konsultasi gratis dari tim profesional kami yang siap membantu Anda.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Data & Statistik</h3>
+                    <p>Akses data dan statistik lengkap yang transparan untuk mendukung keputusan Anda yang lebih baik.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Kemitraan & Kolaborasi</h3>
+                    <p>Kami terbuka untuk kerjasama dan kolaborasi dengan berbagai pihak untuk mencapai tujuan bersama.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌐</div>
+                    <h3>Platform Digital</h3>
+                    <p>Akses mudah melalui platform digital kami yang user-friendly dan dapat diakses 24/7.</p>
+                    <a href="#" class="card-link">Pelajari Lebih Lanjut →</a>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- BERITA -->
-    <div class="section" id="berita">
+    <!-- BERITA SECTION -->
+    <section class="section" id="berita">
         <div class="container">
-            <h2>Berita Terbaru</h2>
-            <div class="cards">
-                <div class="card">
-                    <h3>Judul Berita 1</h3>
-                    <p>Ringkasan berita terbaru kami yang menginformasikan tentang perkembangan dan pencapaian terkini dari instansi kami.</p>
+            <h2 class="section-title">Berita & Update Terbaru</h2>
+            <p class="section-subtitle">Informasi terkini dari Rupande</p>
+            <div class="cards-grid">
+                <article class="news-card">
+                    <div class="news-date">05 Mei 2026</div>
+                    <h3>Rupande Resmi Diluncurkan!</h3>
+                    <p>Platform Rupande telah resmi diluncurkan sebagai solusi terpadu untuk layanan publik yang lebih baik. Kami siap melayani Anda dengan profesional dan transparan.</p>
+                    <a href="#" class="news-link">Baca Selengkapnya →</a>
+                </article>
+                <article class="news-card">
+                    <div class="news-date">01 Mei 2026</div>
+                    <h3>Peningkatan Kualitas Layanan</h3>
+                    <p>Tim kami telah melakukan upgrade sistem untuk meningkatkan kecepatan dan keamanan layanan. Sistem kini dapat menangani lebih banyak permintaan secara bersamaan.</p>
+                    <a href="#" class="news-link">Baca Selengkapnya →</a>
+                </article>
+                <article class="news-card">
+                    <div class="news-date">20 Apr 2026</div>
+                    <h3>Program Literasi Digital Dimulai</h3>
+                    <p>Kami meluncurkan program literasi digital gratis untuk membantu masyarakat memahami dan menggunakan platform digital secara efektif dan aman.</p>
+                    <a href="#" class="news-link">Baca Selengkapnya →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATISTIK SECTION -->
+    <section class="section section-alt stats-section">
+        <div class="container">
+            <h2 class="section-title">Statistik Layanan</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">10,234</div>
+                    <div class="stat-label">Pengguna Aktif</div>
                 </div>
-                <div class="card">
-                    <h3>Judul Berita 2</h3>
-                    <p>Ringkasan berita terbaru kami yang memberikan update tentang program-program unggulan dan kegiatan sosial kami.</p>
+                <div class="stat-box">
+                    <div class="stat-number">5,678</div>
+                    <div class="stat-label">Layanan Terselesaikan</div>
                 </div>
-                <div class="card">
-                    <h3>Judul Berita 3</h3>
-                    <p>Ringkasan berita terbaru kami tentang kolaborasi dan kemitraan dengan berbagai pihak untuk kemajuan bersama.</p>
+                <div class="stat-box">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Kepuasan Pelanggan</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Dukungan Tersedia</div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
     <!-- FOOTER -->
-    <div class="footer" id="kontak">
-        <p>&copy; 2026 Instansi XYZ. Semua hak dilindungi.</p>
-        <p style="margin-top: 10px; font-size: 12px; color: #999;">Hubungi: (021) 123-4567 | Email: info@instansi.go.id</p>
-    </div>
+    <footer class="footer" id="kontak">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h4>Rupande</h4>
+                <p>Platform layanan publik yang transparan dan profesional untuk semua kalangan.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#profil">Profil</a></li>
+                    <li><a href="#layanan">Layanan</a></li>
+                    <li><a href="#berita">Berita</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Hubungi Kami</h4>
+                <p>📞 (021) 123-4567</p>
+                <p>📧 info@rupande.go.id</p>
+                <p>📍 Indonesia</p>
+            </div>
+            <div class="footer-section">
+                <h4>Ikuti Kami</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">📘</a>
+                    <a href="#" title="Twitter">🐦</a>
+                    <a href="#" title="Instagram">📷</a>
+                    <a href="#" title="LinkedIn">💼</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rupande. Semua hak dilindungi. | <a href="#">Kebijakan Privasi</a> | <a href="#">Syarat & Ketentuan</a></p>
+        </div>
+    </footer>
 
-    <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when link clicked
-        const navLinks = document.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.navbar')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 
 </body>
 </html>
