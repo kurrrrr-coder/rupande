@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Rutan Pandeglang</title>
+<title>Profil Instansi</title>
 
 <style>
 body {
@@ -12,44 +12,42 @@ body {
     background: #f5f1e6; /* cream */
 }
 
-/* SIDEBAR */
-.sidebar {
-    width: 220px;
-    height: 100vh;
-    background-color: #3e3e3e; /* abu tua */
+/* NAVBAR */
+.navbar {
+    background: #3e3e3e; /* abu tua */
     color: white;
-    position: fixed;
-    padding-top: 20px;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
 }
 
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.sidebar a {
-    display: block;
-    color: white;
-    padding: 12px 20px;
+.navbar a {
+    color: #f5f1e6;
     text-decoration: none;
+    margin-left: 20px;
 }
 
-.sidebar a:hover {
-    background-color: #5a5a5a;
+/* HERO */
+.hero {
+    background: #d6cfc2; /* cream gelap */
+    color: #333;
+    padding: 100px 30px;
+    text-align: center;
 }
 
-/* MAIN */
-.main {
-    margin-left: 220px;
-    padding: 20px;
+.hero h1 {
+    margin: 0;
+    font-size: 40px;
 }
 
-/* HEADER */
-.header {
-    background: #fffaf0; /* cream terang */
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
+/* SECTION */
+.section {
+    padding: 40px 30px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
 }
 
 /* CARD */
@@ -60,149 +58,116 @@ body {
 }
 
 .card {
+    background: #fffaf0; /* cream terang */
+    padding: 20px;
     flex: 1;
     min-width: 250px;
-    background: #fffaf0;
-    padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 /* PROFILE */
 .profile {
-    background: #fffaf0;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
     display: flex;
     gap: 20px;
     align-items: center;
+    background: #fffaf0;
+    padding: 20px;
+    border-radius: 8px;
 }
 
 .profile img {
-    width: 100px;
-    border-radius: 50%;
-}
-
-.profile-info h3 {
-    margin: 0;
-}
-
-/* NAVBAR TOP */
-.navbar {
-    background: #3e3e3e;
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.navbar a {
-    color: white;
-    text-decoration: none;
-    margin-left: 20px;
-}
-
-/* HERO */
-.hero {
-    background: #d6cfc2; /* cream gelap */
-    padding: 60px;
-    text-align: center;
-}
-
-.hero h1 {
-    margin: 0;
-    color: #333;
-}
-
-/* SECTION */
-.section {
-    padding: 30px;
+    width: 120px;
+    border-radius: 10px;
 }
 
 /* FOOTER */
 .footer {
     background: #3e3e3e;
-    color: white;
+    color: #f5f1e6;
     text-align: center;
-    padding: 15px;
-    margin-top: 30px;
+    padding: 20px;
+    margin-top: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h2>RUTAN</h2>
-    <a href="#">Dashboard</a>
-    <a href="#">Profil</a>
-    <a href="#">Karyawan</a>
-    <a href="#">Laporan</a>
-    <a href="#">Pengaturan</a>
+<!-- NAVBAR -->
+<div class="navbar">
+    <div><strong>Instansi XYZ</strong></div>
+    <div>
+        <a href="#">Beranda</a>
+        <a href="#">Profil</a>
+        <a href="#">Layanan</a>
+        <a href="#">Berita</a>
+        <a href="#">Kontak</a>
+    </div>
 </div>
 
-<div class="main">
+<!-- HERO -->
+<div class="hero">
+    <h1>Selamat Datang di Website Resmi</h1>
+    <p>Melayani dengan Profesional dan Transparan</p>
+</div>
 
-    <!-- HEADER -->
-    <div class="header">
-        <h1>Dashboard Rutan Pandeglang</h1>
-        <p>Sistem Informasi Manajemen</p>
+<!-- PROFIL -->
+<div class="section">
+<div class="container">
+    <h2>Profil Instansi</h2>
+    <div class="profile">
+        <img src="https://via.placeholder.com/120">
+        <div>
+            <p><strong>Nama:</strong> Instansi XYZ</p>
+            <p><strong>Alamat:</strong> Indonesia</p>
+            <p><strong>Visi:</strong> Menjadi instansi terbaik</p>
+        </div>
     </div>
+</div>
+</div>
 
-    <!-- CARDS -->
+<!-- LAYANAN -->
+<div class="section">
+<div class="container">
+    <h2>Layanan</h2>
     <div class="cards">
         <div class="card">
-            <h3>Total Karyawan</h3>
-            <p>120</p>
+            <h3>Layanan 1</h3>
+            <p>Deskripsi layanan</p>
         </div>
         <div class="card">
-            <h3>Proyek Aktif</h3>
-            <p>15</p>
+            <h3>Layanan 2</h3>
+            <p>Deskripsi layanan</p>
         </div>
         <div class="card">
-            <h3>Pendapatan</h3>
-            <p>Rp 250.000.000</p>
+            <h3>Layanan 3</h3>
+            <p>Deskripsi layanan</p>
         </div>
     </div>
+</div>
+</div>
 
-    <!-- PROFILE -->
-    <div class="profile">
-        <img src="https://via.placeholder.com/100">
-        <div class="profile-info">
-            <h3>RUTAN PANDEGLANG</h3>
-            <p>Alamat: Pandeglang, Banten</p>
-            <p>Email: -</p>
+<!-- BERITA -->
+<div class="section">
+<div class="container">
+    <h2>Berita Terbaru</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>Judul Berita</h3>
+            <p>Ringkasan berita terbaru...</p>
+        </div>
+        <div class="card">
+            <h3>Judul Berita</h3>
+            <p>Ringkasan berita terbaru...</p>
         </div>
     </div>
+</div>
+</div>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Selamat Datang di Website Resmi</h1>
-        <p>Pelayanan Profesional & Transparan</p>
-    </div>
-
-    <!-- SECTION -->
-    <div class="section">
-        <h2>Berita Terbaru</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>Berita 1</h3>
-                <p>Isi berita...</p>
-            </div>
-            <div class="card">
-                <h3>Berita 2</h3>
-                <p>Isi berita...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        <p>© 2026 Rutan Pandeglang</p>
-    </div>
-
+<!-- FOOTER -->
+<div class="footer">
+    <p>© 2026 Instansi XYZ</p>
 </div>
 
 </body>
